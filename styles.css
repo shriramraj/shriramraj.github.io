@@ -62,6 +62,76 @@ body::before {
     radial-gradient(ellipse 50% 40% at 50% 80%, rgba(220, 38, 38, 0.06) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
+  animation: ambientShift 18s ease-in-out infinite alternate;
+}
+
+@keyframes ambientShift {
+  0% {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(79, 70, 229, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 50% 80%, rgba(220, 38, 38, 0.06) 0%, transparent 50%);
+  }
+  50% {
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(79, 70, 229, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 30% 60%, rgba(147, 51, 234, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 80% 90%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+  }
+  100% {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 80%, rgba(79, 70, 229, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 50% at 70% 20%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 20% 40%, rgba(147, 51, 234, 0.10) 0%, transparent 50%);
+  }
+}
+
+/* ========================================
+   Scroll Progress Bar
+   ======================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--gradient-main);
+  z-index: 2000;
+  box-shadow: 0 0 12px rgba(147, 51, 234, 0.6);
+  transition: width 0.1s linear;
+}
+
+/* ========================================
+   Cursor Glow
+   ======================================== */
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(147, 51, 234, 0.12) 0%,
+    rgba(79, 70, 229, 0.08) 30%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  filter: blur(20px);
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+@media (hover: none), (max-width: 768px) {
+  .cursor-glow {
+    display: none;
+  }
 }
 
 a {
@@ -246,6 +316,51 @@ strong {
   letter-spacing: -0.02em;
 }
 
+.hero-name-gradient {
+  background: linear-gradient(
+    90deg,
+    #6366f1 0%,
+    #a855f7 25%,
+    #ef4444 50%,
+    #a855f7 75%,
+    #6366f1 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 6s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.typed-target {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  position: relative;
+}
+
+.typed-target::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent-purple);
+  -webkit-text-fill-color: var(--accent-purple);
+  animation: caretBlink 1s steps(2) infinite;
+  font-weight: 400;
+}
+
+@keyframes caretBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 .hero-tagline {
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   font-weight: 500;
@@ -291,14 +406,47 @@ strong {
 
 .btn-primary {
   background: var(--gradient-main);
+  background-size: 200% auto;
   color: #fff;
   box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+  position: relative;
+  animation: btnPulse 3s ease-in-out infinite;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  background: var(--gradient-main);
+  background-size: 200% auto;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition);
+  animation: gradientFlow 4s linear infinite;
 }
 
 .btn-primary:hover {
   color: #fff;
-  box-shadow: 0 6px 30px rgba(147, 51, 234, 0.5);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(147, 51, 234, 0.6);
+  transform: translateY(-3px) scale(1.02);
+  background-position: right center;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+@keyframes btnPulse {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 28px rgba(147, 51, 234, 0.5), 0 0 40px rgba(99, 102, 241, 0.25);
+  }
 }
 
 .btn-outline {
@@ -322,22 +470,39 @@ strong {
 
 .hero-socials a {
   color: var(--text-muted);
-  transition: color var(--transition), transform var(--transition);
+  transition: color 0.25s ease, transform 0.2s cubic-bezier(0.2, 0.6, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: var(--bg-glass);
   border: 1px solid var(--border);
+  position: relative;
+  will-change: transform;
+}
+
+.hero-socials a::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--gradient-main);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+  filter: blur(8px);
 }
 
 .hero-socials a:hover {
-  color: var(--accent-purple);
+  color: #fff;
   border-color: var(--accent-purple);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.2);
+  box-shadow: 0 6px 24px rgba(147, 51, 234, 0.4);
+}
+
+.hero-socials a:hover::before {
+  opacity: 0.7;
 }
 
 .hero-scroll {
@@ -390,8 +555,15 @@ strong {
   width: 60px;
   height: 4px;
   background: var(--gradient-main);
+  background-size: 200% auto;
   margin: 0.75rem auto 0;
   border-radius: 4px;
+  animation: gradientFlow 4s linear infinite, underlineGrow 0.8s ease-out;
+}
+
+@keyframes underlineGrow {
+  from { width: 0; opacity: 0; }
+  to { width: 60px; opacity: 1; }
 }
 
 /* ========================================
@@ -425,6 +597,28 @@ strong {
   padding: 1.75rem;
   text-align: center;
   transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(147, 51, 234, 0.08),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.highlight-card:hover::before {
+  left: 100%;
 }
 
 .highlight-card:hover {
@@ -439,10 +633,13 @@ strong {
   font-size: 2.25rem;
   font-weight: 800;
   background: var(--gradient-main);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  animation: gradientFlow 6s linear infinite;
 }
 
 .highlight-label {
@@ -498,6 +695,18 @@ strong {
 .timeline-item:first-child .timeline-marker {
   background: var(--accent-purple);
   box-shadow: 0 0 16px rgba(147, 51, 234, 0.5);
+  animation: markerPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(147, 51, 234, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(147, 51, 234, 0.8), 0 0 36px rgba(99, 102, 241, 0.3);
+    transform: scale(1.15);
+  }
 }
 
 .timeline-content {
@@ -594,6 +803,15 @@ strong {
   letter-spacing: 0.02em;
   border: 1px solid rgba(147, 51, 234, 0.2);
   font-weight: 500;
+  transition: all var(--transition);
+  cursor: default;
+}
+
+.tag:hover {
+  border-color: var(--accent-purple);
+  background: rgba(147, 51, 234, 0.2);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 /* ========================================
@@ -612,11 +830,32 @@ strong {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 2rem;
-  transition: all var(--transition);
+  transition: transform 0.2s cubic-bezier(0.2, 0.6, 0.3, 1), box-shadow var(--transition), border-color var(--transition), background var(--transition);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(147, 51, 234, 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.project-card:hover::after {
+  opacity: 1;
 }
 
 .project-card::before {

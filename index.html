@@ -13,8 +13,12 @@
   <meta property="og:image:width" content="800" />
   <meta property="og:image:height" content="500" />
 </head>
-</head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -39,8 +43,8 @@
   <section class="hero" id="hero">
     <div class="hero-content">
       <p class="hero-greeting">Hi, I'm</p>
-      <h1 class="hero-name">Shriram Rajasekar</h1>
-      <h2 class="hero-tagline">Data Science <span class="accent">&rarr;</span> Cybersecurity</h2>
+      <h1 class="hero-name"><span class="hero-name-gradient">Shriram Rajasekar</span></h1>
+      <h2 class="hero-tagline">Data Science <span class="accent">&rarr;</span> <span class="typed-target" id="typed">Cybersecurity</span></h2>
       <p class="hero-description">I studied data science to understand patterns. Now I use that skill to catch the ones that shouldn't be there.</p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -77,19 +81,19 @@
         </div>
         <div class="about-highlights">
           <div class="highlight-card">
-            <span class="highlight-number">6+</span>
+            <span class="highlight-number" data-target="6" data-suffix="+">0</span>
             <span class="highlight-label">Projects Shipped</span>
           </div>
           <div class="highlight-card">
-            <span class="highlight-number">4</span>
+            <span class="highlight-number" data-target="4" data-suffix="">0</span>
             <span class="highlight-label">Hackathons</span>
           </div>
           <div class="highlight-card">
-            <span class="highlight-number">3+</span>
+            <span class="highlight-number" data-target="3" data-suffix="+">0</span>
             <span class="highlight-label">Certifications</span>
           </div>
           <div class="highlight-card">
-            <span class="highlight-number">2+</span>
+            <span class="highlight-number" data-target="2" data-suffix="+">0</span>
             <span class="highlight-label">Years Experience</span>
           </div>
         </div>
