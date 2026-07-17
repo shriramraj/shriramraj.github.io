@@ -189,7 +189,7 @@ document.querySelectorAll('.highlight-number[data-target]').forEach(el => {
    =========================== */
 const typedEl = document.getElementById('typed');
 if (typedEl) {
-  const phrases = ['Cybersecurity', 'IAM Engineering', 'Identity Security', 'Threat Detection'];
+  const phrases = ['Tech Sales', 'Sales Development', 'Building Pipeline', 'Cybersecurity'];
   let phraseIdx = 0;
   let charIdx = 0;
   let isDeleting = false;
