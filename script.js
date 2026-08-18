@@ -110,7 +110,7 @@ if (!isTouchDevice && cursorGlow) {
    3D Tilt + Mouse Spotlight on Project Cards
    =========================== */
 if (!isTouchDevice) {
-  document.querySelectorAll('.project-card, .highlight-card, .contact-card, .leadership-card').forEach(card => {
+  document.querySelectorAll('.project-card, .highlight-card, .contact-card, .leadership-card, .focus-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -189,7 +189,7 @@ document.querySelectorAll('.highlight-number[data-target]').forEach(el => {
    =========================== */
 const typedEl = document.getElementById('typed');
 if (typedEl) {
-  const phrases = ['Tech Sales', 'Sales Development', 'Building Pipeline', 'Cybersecurity'];
+  const phrases = ['IAM Analyst', 'GRC & Compliance', 'Security Operations', 'Identity Security'];
   let phraseIdx = 0;
   let charIdx = 0;
   let isDeleting = false;
@@ -243,7 +243,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(
   '.timeline-item, .project-card, .skill-category, .edu-card, ' +
-  '.leadership-card, .highlight-card, .contact-card, .about-text'
+  '.leadership-card, .focus-card, .highlight-card, .contact-card, .about-text'
 ).forEach((el, i) => {
   el.classList.add('fade-in');
   el.style.transitionDelay = (Math.min(i, 5) * 80) + 'ms';
