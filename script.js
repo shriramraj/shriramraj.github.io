@@ -243,7 +243,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(
   '.timeline-item, .project-card, .skill-category, .edu-card, ' +
-  '.leadership-card, .focus-card, .highlight-card, .contact-card, .about-text'
+  '.leadership-card, .focus-card, .cert-card, .highlight-card, .contact-card, .about-text'
 ).forEach((el, i) => {
   el.classList.add('fade-in');
   el.style.transitionDelay = (Math.min(i, 5) * 80) + 'ms';

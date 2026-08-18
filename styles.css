@@ -15,6 +15,8 @@
   --accent-purple: #a855f7;
   --accent-red: #ef4444;
   --accent-pink: #ec4899;
+  --accent-green: #34d399;
+  --accent-amber: #fbbf24;
   --text-primary: #f4f4f8;
   --text-secondary: #a1a1b5;
   --text-muted: #6b6b80;
@@ -1020,7 +1022,7 @@ strong {
 }
 
 .edu-icon svg {
-  stroke: url(#grad);
+  stroke: var(--accent-purple);
   color: var(--accent-purple);
 }
 
@@ -1058,37 +1060,81 @@ strong {
   line-height: 1.7;
 }
 
-.cert-list {
+/* Education grid holding a single card: keep it centered, not stretched */
+.edu-grid--single {
+  grid-template-columns: minmax(0, 620px);
+  justify-content: center;
+}
+
+/* ========================================
+   Certifications Section
+   ======================================== */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.cert-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem;
+  transition: all var(--transition);
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-.cert-list li {
-  padding-left: 1.25rem;
-  position: relative;
+.cert-card:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
 }
 
-.cert-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 8px;
-  height: 8px;
-  background: var(--gradient-main);
-  border-radius: 50%;
+.cert-card--progress {
+  border-style: dashed;
 }
 
-.cert-list li strong {
-  display: block;
-  font-size: 0.92rem;
-  margin-bottom: 0.15rem;
+.cert-status {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.24rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
 }
 
-.cert-list li span {
-  font-size: 0.8rem;
+.cert-status--earned {
+  color: var(--accent-green);
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.cert-status--progress {
+  color: var(--accent-amber);
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.cert-name {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.cert-issuer {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
   color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: auto;
 }
 
 /* ========================================
