@@ -1305,6 +1305,18 @@ strong {
   line-height: 1.7;
 }
 
+.inline-link {
+  color: var(--accent-purple);
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.inline-link:hover {
+  border-bottom-color: var(--accent-purple);
+}
+
 /* ========================================
    Contact Section
    ======================================== */
