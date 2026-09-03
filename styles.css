@@ -246,6 +246,25 @@ strong {
   width: 100%;
 }
 
+/* Cross-link to the chess portfolio: a pill, so it reads as another
+   site rather than a section anchor */
+.nav-links a.nav-switch {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.85rem;
+  font-size: 0.82rem;
+  color: var(--accent-purple);
+  white-space: nowrap;
+}
+
+.nav-links a.nav-switch::after { display: none; }
+
+.nav-links a.nav-switch:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: var(--accent-purple);
+  color: var(--text-primary);
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
