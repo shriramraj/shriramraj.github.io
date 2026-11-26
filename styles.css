@@ -400,6 +400,20 @@ strong {
   border-radius: var(--radius-pill);
   padding: 0.5rem 1.1rem;
   margin-bottom: 2rem;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.hero-announce:hover,
+.hero-announce:focus-visible {
+  background: rgba(52, 211, 153, 0.18);
+  border-color: rgba(52, 211, 153, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.18);
+}
+
+.hero-announce:focus-visible {
+  outline: 2px solid var(--accent-green);
+  outline-offset: 3px;
 }
 
 .hero-announce strong {
